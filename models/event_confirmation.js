@@ -1,6 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
   const event_confirmation = sequelize.define('event_confirmation', {
     event_id: DataTypes.INTEGER,
+    title: DataTypes.STRING
   }, {
       tableName: 'event_confirmation'
   });
