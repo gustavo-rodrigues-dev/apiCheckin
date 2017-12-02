@@ -1,6 +1,6 @@
 const config = {
     debug: {
-        level: 'debug',
+        level: 'error',
         available: true,
     },
     db: {
