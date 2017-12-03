@@ -88,7 +88,7 @@ module.exports = (app) => {
                 .then(event => {
                     return res
                         .status(200)
-                        .json(event)
+                        .json(event[0])
                 })
                 .catch(error => {
                     return res

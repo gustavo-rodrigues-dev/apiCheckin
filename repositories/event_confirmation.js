@@ -14,15 +14,15 @@ module.exports = (app) => {
             };
 
             if('id' in filter){
-                queryParams.id = filter.id;
+                queryParams.where.id = filter.id;
             }
 
             if('event_id' in filter){
-                queryParams.event_id = filter.event_id;
+                queryParams.where.event_id = filter.event_id;
             }
 
             if('name' in filter){
-                filter.name = `%${filter.name}%`;
+                filter.where.name = `%${filter.name}%`;
 
                 queryParams.where.name = {
                     [Op.iLike]: filter.name
