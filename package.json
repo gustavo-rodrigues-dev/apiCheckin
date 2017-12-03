@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prestart": "./node_modules/.bin/sequelize db:migrate",
+    "pm2": "pm2 delete ecosystem.json; pm2 startOrReload ecosystem.json --interpreter babel-node",
     "start": "babel-node index.js",
     "migrate": "./node_modules/.bin/sequelize db:migrate",
     "test": "echo \"Error: no test specified\" && exit 1",
