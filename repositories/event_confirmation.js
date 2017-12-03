@@ -47,7 +47,6 @@ module.exports = (app) => {
                     defaults: event,
                     transaction: t
                 }).spread((event_confirmation, created) => {
-                    console.log(created)
                     let participants =  partcipants.map((self) => {
                         self.event_confirmation_id = event_confirmation.id;
 
@@ -62,6 +61,17 @@ module.exports = (app) => {
                                 },
                                 defaults: current,
                                 transaction: t
+                            }).spread((participationConfimate, created) => {
+                                if(!created){
+                                   return EventParticipantModel.update(current,{
+                                       where: {
+                                           confirmation_code: current.confirmation_code,
+                                           event_confirmation_id: current.event_confirmation_id
+                                       },
+                                       transaction: t
+                                   });
+                                }
+                                return participationConfimate;
                             })
                         )
 
@@ -69,7 +79,8 @@ module.exports = (app) => {
                     }, []);
 
                    return Promise.all(participants)
-                        .then(() => {
+                        .then((ev) => {
+                            console.log(ev[0]);
                             return event_confirmation.id;
                         })
                        .catch(err => {
